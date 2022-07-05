@@ -1,5 +1,7 @@
 class Contact < ApplicationRecord
 
+    belongs_to :kind
+
     def author
         "Deco"
     end
