@@ -31,6 +31,9 @@ gem 'rack-cors'
 gem 'faker'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'foreman'
+gem 'jwt'
+gem 'devise'
+gem 'devise_token_auth'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

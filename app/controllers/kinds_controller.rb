@@ -1,10 +1,5 @@
 class KindsController < ApplicationController
 
-  TOKEN = 'admin'
-
-  include ActionController:HttpAuthentication::Token::ControllerMethods
-
-  before_action :authenticate
   before_action :set_kind, only: [:show, :update, :destroy]
 
   # GET /kinds
@@ -46,21 +41,6 @@ class KindsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    
-    def authenticate
-
-      authenticate_or_request_with_http_token('Application') do |token, options|
-
-        ActiveSupport::SecurityUtils.secure_compare(
-        
-          ::Digest::SHA256.hexdigest(token),
-          ::Digest::SHA256.hexdigest(TOKEN)  
-        
-        )
-
-      end
-
-    end
     
     def set_kind
 
