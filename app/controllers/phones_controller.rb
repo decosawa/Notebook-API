@@ -41,8 +41,9 @@ class PhonesController < ApplicationController
     end 
 
     def destroy
-    
-        @contact.phones.destroy 
+        
+        phone = Phone.find(phone_params[:id])
+        phone.destroy 
 
     end
 
