@@ -43,10 +43,12 @@ class ContactsController < ApplicationController
     def set_contact
       
       @contact = Contact.find(params[:id])
+
     end
 
     # Only allow a trusted parameter "white list" through.
     def contact_params
       ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
+    
 end
