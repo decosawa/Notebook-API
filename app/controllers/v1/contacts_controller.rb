@@ -7,7 +7,7 @@ module v1
     # GET /contacts
     def index
 
-      @contacts = Contact.all
+      @contacts = Contact.all.page(params[:page].try(:[], number)).per(params[:page][:size])
 
       render json: @contacts
       
