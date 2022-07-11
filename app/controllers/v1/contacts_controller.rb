@@ -8,9 +8,14 @@ module v1
     def index
 
       @contacts = Contact.all.page(params[:page].try(:[], number)).per(params[:page][:size])
-
-      render json: @contacts
       
+      expires_in 3.minutes, public: true 
+
+      if stale?(etag: @contacts)
+      
+        render json: @contacts
+      
+      end
     end
 
     # GET /contacts/1
@@ -25,7 +30,7 @@ module v1
       if @contact.save
         render json: @contact, include: [:kind, :phones, :address],status: :created, location: @contact
       else
-        render json: @contact.errors, status: :unprocessable_entity
+        render json: ErrorSerializer.serialize(@contact.errors)
       end
     end
 
